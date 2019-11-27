@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.day.people.ahanikel</groupId>
+    <artifactId>slingsshjsconsole</artifactId>
+    <packaging>bundle</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <name>SSH Javascript Console for Sling</name>
+    <description>SSH Javascript Console for Sling</description>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-scr-plugin</artifactId>
+                <version>1.4.4</version>
+                <executions>
+                    <execution>
+                        <id>generate-scr-descriptor</id>
+                        <goals>
+                            <goal>scr</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <extensions>true</extensions>
+                <version>2.0.1</version>
+                <configuration>
+                    <instructions>
+                        <Embed-Dependency>rhino,mina-core,sshd-core,jline,jzlib</Embed-Dependency>
+                        <Private-Package>com.day.people.ahanikel</Private-Package>
+                        <Import-Package>
+!javax.net.ssl,
+!javax.security.auth,
+!javax.security.auth.callback,
+!javax.security.auth.login,
+!javax.security.sasl,
+!javax.servlet,
+!javax.swing,
+!javax.swing.event,
+!javax.swing.table,
+!javax.swing.text,
+!javax.swing.tree,
+!javax.xml.parsers,
+!org.apache.tomcat.jni,
+!org.apache.xmlbeans,
+!org.bouncycastle.crypto.prng,
+!org.bouncycastle.jce.provider,
+!org.bouncycastle.openssl,
+!org.ietf.jgss,
+!org.xml.sax,
+*,
+org.apache.jackrabbit.commons,
+javax.jcr,
+javax.jcr.query
+                        </Import-Package>
+                    </instructions>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <!-- use version 2.3.2 to have java 1.5 as the default -->
+                <version>2.3.2</version>
+            </plugin>
+        </plugins>
+    </build>
+    <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>servlet-api</artifactId>
+            <version>2.5</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>javax.jcr</groupId>
+            <artifactId>jcr</artifactId>
+            <version>2.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.sling</groupId>
+            <artifactId>org.apache.sling.api</artifactId>
+            <version>2.0.8</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.scr.annotations</artifactId>
+            <version>1.0.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+                <groupId>org.apache.sshd</groupId>
+                <artifactId>sshd-core</artifactId>
+                <version>0.5.0</version>
+                <type>jar</type>
+                <scope>compile</scope>
+        </dependency>
+        <dependency>
+                <groupId>jline</groupId>
+                <artifactId>jline</artifactId>
+                <version>0.9.94</version>
+                <type>jar</type>
+                <scope>compile</scope>
+        </dependency>
+        <dependency>
+                <groupId>org.apache.mina</groupId>
+                <artifactId>mina-core</artifactId>
+                <version>2.0.2</version>
+                <type>bundle</type>
+                <scope>compile</scope>
+        </dependency>
+        <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>1.6.1</version>
+                <type>jar</type>
+                <scope>compile</scope>
+        </dependency>
+    <dependency>
+                <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+                <version>1.6.1</version>
+                <type>jar</type>
+                <scope>compile</scope>
+        </dependency>
+       <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+       <dependency>
+           <groupId>com.jcraft</groupId>
+           <artifactId>jzlib</artifactId>
+           <version>1.0.7</version>
+           <type>jar</type>
+           <scope>compile</scope>
+       </dependency>
+       <dependency>
+           <groupId>org.osgi</groupId>
+           <artifactId>org.osgi.compendium</artifactId>
+           <version>4.2.0</version>
+           <type>jar</type>
+           <scope>compile</scope>
+       </dependency>
+       <dependency>
+           <groupId>org.osgi</groupId>
+           <artifactId>org.osgi.core</artifactId>
+           <version>4.3.0</version>
+           <type>jar</type>
+           <scope>compile</scope>
+       </dependency>
+       <dependency>
+           <groupId>org.mozilla</groupId>
+           <artifactId>rhino</artifactId>
+           <version>1.7R3</version>
+           <type>jar</type>
+           <scope>compile</scope>
+       </dependency>
+       <dependency>
+           <groupId>org.apache.sling</groupId>
+           <artifactId>org.apache.sling.jcr.api</artifactId>
+           <version>2.1.0</version>
+           <type>bundle</type>
+           <scope>compile</scope>
+       </dependency>
+       <dependency>
+           <groupId>javax.jcr</groupId>
+           <artifactId>jcr-api</artifactId>
+           <version>2.0-pfd</version>
+           <type>bundle</type>
+           <scope>provided</scope>
+       </dependency>
+       <dependency>
+           <groupId>org.apache.jackrabbit</groupId>
+           <artifactId>jackrabbit-core</artifactId>
+           <version>2.3-r1170506</version>
+           <type>jar</type>
+           <scope>compile</scope>
+       </dependency>
+    </dependencies>
+    <profiles>
+        <profile>
+            <id>autoInstallBundle</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.sling</groupId>
+                        <artifactId>maven-sling-plugin</artifactId>
+                        <version>2.0.4-incubator</version>
+                        <executions>
+                            <execution>
+                                <id>install-bundle</id>
+                                <goals>
+                                    <goal>install</goal>
+                                </goals>
+                                <configuration>
+                                    <slingUrl>http://localhost:4502/system/console</slingUrl>
+                                    <user>admin</user>
+                                    <password>admin</password>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
+
